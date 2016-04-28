@@ -1,9 +1,14 @@
+<form method="get" action="/quizzes">
+  Buscar Preguntas<p>
+  <input type="text" name="search" placeHolder="Introduzca patrón"/>
+  <input type="submit" value="Enviar">
+</form>
 
 <table>
   <% for (var i in quizzes) { %>
      <tr>
         <td>
-           <a href="/quizzes/<%= quizzes[i].id %>"><%= quizzes[i].question %></a>
+           <a href="/quizes/<%= quizzes[i].id %>"><%= quizzes[i].question %></a>
         </td>
      </tr>
   <% } %>
