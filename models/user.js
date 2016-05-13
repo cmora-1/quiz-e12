@@ -5,7 +5,12 @@ var crypto = require('crypto');
 
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('User',
-      { username: {
+      { id: { type: DataTypes.INTEGER,
+                      allowNull: false,
+                      primaryKey: true,
+                      autoIncrement: true,
+                      unique: true },
+        username: {
             type: DataTypes.STRING,
             unique: true,
             validate: { notEmpty: { msg: "Falta username" }}
