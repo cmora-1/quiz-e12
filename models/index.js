@@ -31,6 +31,9 @@ var Quiz = sequelize.import(path.join(__dirname,'quiz'));
 // Importar la definicion de la tabla Comments de comment.js
 var Comment = sequelize.import(path.join(__dirname,'comment'));
 
+// Importar la definicion de la tabla Users de user.js
+var User = sequelize.import(path.join(__dirname,'user'));
+
 // Relaciones entre modelos
 Comment.belongsTo(Quiz);
 Quiz.hasMany(Comment);
@@ -47,7 +50,12 @@ sequelize.sync()
                                                  {question: 'Capital de Portugal', answer: 'Lisboa'}
                                               ])
                                    .then(function() {
-                                        console.log('Base de datos inicializada con datos');
+                                        return User.count()
+                                              .then(function (d) {
+                                                if (d === 0) {
+                                                  console.log('Base de datos inicializada con datos');
+                                                }
+                                              });
                                     });
                     }
                 });
@@ -60,3 +68,4 @@ sequelize.sync()
 
 exports.Quiz = Quiz; // exportar definición de tabla Quiz
 exports.Comment = Comment; // exportar definición de tabla Comments
+exports.User = User;       // exportar definición de tabla Users
